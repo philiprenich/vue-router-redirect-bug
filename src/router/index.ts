@@ -6,11 +6,6 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: "/",
-    name: "Home",
-    component: Home,
-  },
-  {
     path: "/about",
     name: "About",
     // route level code-splitting
@@ -19,11 +14,18 @@ const routes: Array<RouteConfig> = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
+  {
+    path: "/",
+    redirect: () => {
+      window.location.href = "/"
+      return ""
+    }
+  }
 ];
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.BASE_URL,
+  base: "/spa",
   routes,
 });
 
